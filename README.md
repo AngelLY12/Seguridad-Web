@@ -34,3 +34,6 @@ En dado caso de que tu versión de tomcat sea la 9 o inferior deberas entrar den
 
 >[!IMPORTANT]
 Tambien debes recordar modificar las variables DB_USER Y DB_PASSWORD en el archivo dentro de ./crud/WEB-INF/classes/connection/connectionDB.java y compilar el proyecto. Para crear la base de datos es recomendable ejecutar los siguientes comandos dentro de tu psql: CREATE DATABASE celulares CREATE TABLE celular (imei BIGINT PRIMARY KEY, nombre VARCHAR(50) NOT NULL, marca VARCHAR(50) NOT NULL, anolanzammiento INT NOT NULL);
+
+>[!TIP]
+Recuerda que siempre debes compilar los archivos java cuando les haces una modificación y reiniciar tu servidor Tomcat para que los cambios se vean reflejados.
