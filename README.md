@@ -59,9 +59,9 @@ Recuerda que siempre debes compilar los archivos java cuando les haces una modif
 >
 > ```properties
 > db.driver=org.postgresql.Driver
-> db.url=jdbc:postgresql://127.0.0.1/celulares
-> db.user=angel
-> db.password=123
+> db.url=jdbc:postgresql://127.0.0.1/tu_base_de_datos
+> db.user=tu_usuario
+> db.password=tu_contraseña
 > ```
 > Tambien recuerda añadir al CLASSPATH el jar en `/etc/profile` 
 
