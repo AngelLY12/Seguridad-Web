@@ -63,4 +63,5 @@ Recuerda que siempre debes compilar los archivos java cuando les haces una modif
 > db.user=angel
 > db.password=123
 > ```
+> Tambien recuerda añadir al CLASSPATH el jar en `/etc/profile` 
 
