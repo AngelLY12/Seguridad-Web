@@ -1,5 +1,10 @@
 CRUD DE CELULARES
 
+db.driver=org.postgresql.Driver
+db.url=jdbc:postgresql://127.0.0.1/celulares
+db.user=angel
+db.password=123
+
 Installation
 
 Install my-project with Download zip
