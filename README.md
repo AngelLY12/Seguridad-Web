@@ -37,3 +37,11 @@ Tambien debes recordar modificar las variables DB_USER Y DB_PASSWORD en el archi
 
 >[!TIP]
 Recuerda que siempre debes compilar los archivos java cuando les haces una modificación y reiniciar tu servidor Tomcat para que los cambios se vean reflejados.
+
+>[!IMPORTANT]
+Para que la api database.jar funcione, debes ir al directorio /etc y crear un archivo llamado database.properties: nano /etc/database.properties
+En este archivo debes agregar las lineas:
+db.driver=org.postgresql.Driver
+db.url=jdbc:postgresql://127.0.0.1/celulares
+db.user=angel
+db.password=123
