@@ -2,8 +2,7 @@ package controllers;
 import jakarta.servlet.http.*;
 import jakarta.servlet.RequestDispatcher;
 import modelo.Celular;
-import services.CelularService;
-
+import services.Dataservice;
 import java.io.IOException;
 import java.rmi.ServerException;
 import java.text.SimpleDateFormat;
@@ -21,7 +20,6 @@ public class UpdateController extends HttpServlet {
             String marca = request.getParameter("marca");
             String anoLanzamientoParam = request.getParameter("anoLanzamiento");
 
-
             if (imeiParam == null || imeiParam.isEmpty() ||
                 nombre == null || nombre.isEmpty() ||
                 marca == null || marca.isEmpty() ||
@@ -34,9 +32,9 @@ public class UpdateController extends HttpServlet {
             int anoLanzamiento = Integer.parseInt(anoLanzamientoParam);
             System.out.println("Año de Lanzamiento int: " + anoLanzamiento);
 
-            CelularService service = new CelularService();
+            Dataservice<Celular> service = new Dataservice<>();
             Celular celular = new Celular(imei,nombre,marca,anoLanzamiento);
-            String resultado = service.modificarCelular(celular);
+            String resultado = service.modificar(celular, "UPDATE celular SET nombre = ?, marca = ?, anoLanzamiento = ? WHERE imei = ?");
             // Guardar el resultado en la sesión o mostrarlo
             HttpSession sesion = request.getSession();
             sesion.setAttribute("resultado", resultado);

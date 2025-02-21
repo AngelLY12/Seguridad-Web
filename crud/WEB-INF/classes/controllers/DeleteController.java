@@ -2,12 +2,13 @@ package controllers;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
-import services.CelularService;
+import modelo.Celular;
+import services.Dataservice;
 import java.io.IOException;
 
 public class DeleteController extends HttpServlet {
 
-    private final CelularService service = new CelularService();
+    private final Dataservice<Celular> service = new Dataservice<>();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
@@ -22,7 +23,7 @@ public class DeleteController extends HttpServlet {
             }
     
             Long imei = Long.parseLong(imeiStr);
-            service.eliminarCelular(imei);
+            service.eliminar(imei, "DELETE FROM celular WHERE imei = ?");
     
             response.sendRedirect(request.getContextPath() + "/SelectController?");
         } catch (NumberFormatException e) {

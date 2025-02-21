@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import modelo.Celular;
-import services.CelularService;
+import services.Dataservice;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,13 +13,13 @@ import java.util.List;
 
 public class SelectController extends HttpServlet {
 
-    private final CelularService service = new CelularService();
+    private final Dataservice<Celular> service = new Dataservice<>();
 
     @Override
 protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
     try {
-        List<Celular> celulares = service.verCelulares();
+        List<Celular> celulares = service.seleccionar("SELECT * FROM celular",Celular.class);
 
         // Verifica si la lista está vacía o nula
         if (celulares == null || celulares.isEmpty()) {
@@ -37,6 +37,4 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
             "Ocurrió un error en el servidor");
     }
 }
-
 }
-

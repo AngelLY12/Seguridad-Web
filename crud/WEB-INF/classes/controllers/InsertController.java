@@ -1,7 +1,7 @@
 package controllers;
 import jakarta.servlet.http.*;
 import modelo.Celular;
-import services.CelularService;
+import services.Dataservice;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -30,11 +30,9 @@ public class InsertController extends HttpServlet {
             int anoLanzamiento = Integer.parseInt(anoLanzamientoParam);
 
            
-
+            Dataservice<Celular> service = new Dataservice<>();
             Celular celular = new Celular(imei, nombre, marca, anoLanzamiento);
-
-            CelularService service = new CelularService();
-            String resultado = service.añadirCelular(celular);
+            String resultado = service.insertar(celular, "INSERT INTO celular (imei, nombre, marca, anoLanzamiento) VALUES (?, ?, ?, ?)");
             HttpSession sesion = request.getSession();
             sesion.setAttribute("resultado", resultado);
             response.sendRedirect(request.getContextPath() + "/SelectController?");

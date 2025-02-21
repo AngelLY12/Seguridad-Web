@@ -8,10 +8,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import modelo.Celular;
-import services.CelularService;
+import services.Dataservice;
 
 public class FindCelularController extends HttpServlet {
-    private final CelularService service = new CelularService();
+    private final Dataservice<Celular> service = new Dataservice<>();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -21,7 +21,7 @@ public class FindCelularController extends HttpServlet {
     try {
         String imeiParam = request.getParameter("imei");
         Long imei = Long.parseLong(imeiParam);
-        Celular celular = service.findCelularByImei(imei);
+        Celular celular = service.findById(imei,"SELECT nombre,marca,anoLanzamiento FROM celular where imei = ?",Celular.class);
         request.setAttribute("celular", celular);
         RequestDispatcher rd = request.getRequestDispatcher("/src/update.jsp");
         rd.forward(request, response);
