@@ -40,8 +40,8 @@ Recuerda que siempre debes compilar los archivos java cuando les haces una modif
 
 >[!IMPORTANT]
 Para que la api database.jar funcione, debes ir al directorio /etc y crear un archivo llamado database.properties: nano /etc/database.properties
-En este archivo debes agregar las lineas:
-db.driver=org.postgresql.Driver
-db.url=jdbc:postgresql://127.0.0.1/celulares
-db.user=angel
-db.password=123
+>En este archivo debes agregar las lineas:
+>db.driver=org.postgresql.Driver
+>db.url=jdbc:postgresql://127.0.0.1/celulares
+>db.user=angel
+>db.password=123
