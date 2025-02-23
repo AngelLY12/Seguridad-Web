@@ -4,37 +4,35 @@ Installation
 
 Install my-project with Download zip
 
-Al descargar el proyecto debes descomprimirlo en la carpeta Webapps de Tomcat partiendo del directorio crud/, ese es el directorio raíz por lo que debes omitir el directorio Seguridad-Web.
-
+Al descargar el proyecto debes descomprimirlo en la carpeta Webapps de Tomcat partiendo del directorio api-crud/, ese es el directorio raíz por lo que debes omitir el directorio Seguridad-Web.
+```bash
+mv api-crud /usr/local/tu-tomcat/webapps
+```
 Run Locally
 
-Ve al directorio del proyecto `cd ./crud/WEB-INF/classes`
-
-> **IMPORTANT:**
-Compilar los archivos Java.
-En este directorio vas a ejecutar el comando `javac controllers/*.java interfaces/*.java modelo/*.java services/*.java connection/*.java`
-
-Inicia el servidor
-
-Dependiendo de si tienes tomcat iniciado con un servicio o no podras iniciarlo con systemctl start tomcat, en caso contrario tendras que ir a la carpeta bin del servido `/usr/local/tu-tomcat/bin`. Aqui ejecutaras el archivo `./startup.sh`
-
-Environment Variables
-Para correr este proyecto debes recordar tener configuradas variables de entorno, principalmente la correspondiente al servlet.
-
-> **IMPORTANT:**
-Ejecuta `echo $CLASSPATH`, si esta se encuentra vacia entra a `~/.bashrc`, aqui deberas agregar la siguiente linea.
-> `export CLASSPATH=$CLASSPATH:/usr/local/tu-tomcat-/lib/servlet-api.jar`. Posterior a esto ejecutaras source `~/.bashrc`
-
+Una vez que tengas el proyecto en webapps debes tomar algunas consideraciones, primero verificar tu CLASSPATH.
+```bash
+echo $CLASSPATH
+```
+Si este aparece vacio debes incluir las apis servlet.jar y database.jar
+```bash
+nano /etc/profile
+export CLASSPATH=/usr/local/tu-tomcat/lib/servlet-api.jar:/usr/local/tu-tomcat/webapps/api-crud/WEB-INF/lib/database.jar
+source /etc/profile
+```
+Una vez cargadas las apis, dirigete al directorio classes del proyecto y compila los archivos.
+```bash
+cd /usr/local/tu-tomcat/webapps/api-crud/WEB-INF/classes
+javac controllers/*.java modelo/*.java
+```
 Appendix
 
 > **NOTE:**
 Si tienes instalada una versión de tomcat 10 o superior no es necesario hacer modificaciones a los archivos.
+En dado caso de que tu versión de tomcat sea la 9 o inferior, no es necesario cambiar algo en los controllers, en dado caso de ser una version 10 o superior, deberas entrar dentro de `./api-crud/WEB-INF/classes/controllers` y en cada controlador cambiar las librerias javax por jakarta y compilar el proyecto.
 
 > **IMPORTANT:**
-En dado caso de que tu versión de tomcat sea la 9 o inferior deberas entrar dentro de `./crud/WEB-INF/classes/controllers` y en cada controlador cambiar las librerias jakarta por javax y compilar el proyecto con el comando del punto Run Locally.
-
-> **IMPORTANT:**
-Tambien debes recordar modificar las variables DB_USER Y DB_PASSWORD en el archivo dentro de `./crud/WEB-INF/classes/connection/connectionDB.java` y compilar el proyecto. Para crear la base de datos es recomendable ejecutar los siguientes comandos dentro de tu psql:
+Para crear la base de datos es recomendable ejecutar los siguientes comandos dentro de tu psql:
 > ```bash
 > CREATE DATABASE celulares
 > CREATE TABLE celular (
@@ -63,5 +61,4 @@ Recuerda que siempre debes compilar los archivos java cuando les haces una modif
 > db.user=tu_usuario
 > db.password=tu_contraseña
 > ```
-> Tambien recuerda añadir al CLASSPATH el jar en `/etc/profile` 
 
