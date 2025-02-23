@@ -34,8 +34,8 @@ public class UpdateController extends HttpServlet {
 
             Dataservice<Celular> service = new Dataservice<>();
             Celular celular = new Celular(imei,nombre,marca,anoLanzamiento);
+            String[] fieldOrder = {"nombre", "marca", "anoLanzamiento", "imei"};
             String resultado = service.modificar(celular, "UPDATE celular SET nombre = ?, marca = ?, anoLanzamiento = ? WHERE imei = ?");
-            // Guardar el resultado en la sesión o mostrarlo
             HttpSession sesion = request.getSession();
             sesion.setAttribute("resultado", resultado);
             response.sendRedirect(request.getContextPath() + "/SelectController?");
