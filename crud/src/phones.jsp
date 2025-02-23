@@ -11,10 +11,11 @@
 </head>
 <body class="bg-gray-100">
   <header class="bg-blue-600 text-white py-4">
-    <div class="container mx-auto text-center">
+    <div class="container mx-auto text-center gap-6">
       <h1 class="text-3xl font-bold">Lista de Celulares agregados</h1>
-      <a href="./src/index.jsp" class="hover:underline underline-offset-8">Agregar</a>
-      
+      <span class="inline-flex justify-center py-2 px-4 border border-transparent shadow-md font-medium rounded-md text-white gap-12">
+        <a href="./src/index.jsp" class="hover:underline underline-offset-8">Agregar</a>
+      </span>
     </div>
   </header>
   <main class="container mx-auto p-6">
@@ -35,6 +36,7 @@
             <p class="text-gray-600"><strong>IMEI:</strong> <%= celular.getImei() %></p>
             <p class="text-gray-600"><strong>Marca:</strong> <%= celular.getMarca() %></p>
             <p class="text-gray-600"><strong>Año de Lanzamiento:</strong> <%= celular.getAnoLanzamiento() %></p>
+
           </div>
           <span class="flex justify-center align-center bg-blue-600 gap-6">
             <form action="./src/update.jsp" method="post">

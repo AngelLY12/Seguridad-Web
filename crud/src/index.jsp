@@ -11,7 +11,10 @@
     <header class="bg-blue-600 text-white py-4">
         <div class="container mx-auto text-center">
             <h1 class="text-3xl font-bold">Formulario de Celulares</h1>
-            <a href="/crud/SelectController?" class="hover:underline underline-offset-8">Ver celulares</a>
+            <span class="inline-flex justify-center py-2 px-4 border border-transparent shadow-md font-medium rounded-md text-white gap-12">
+                <a href="/crud/SelectController?" class="hover:underline underline-offset-8">Ver celulares</a>
+                <a href="./src/graficas.jsp" class="hover:underline underline-offset-8">Graficas</a>
+            </span>
         </div>
     </header>
 
@@ -73,7 +76,7 @@
                     />
                     <small id="marca-message"></small>
                 </div>
-        
+
                 <div class="text-right">
                     <button
                         type="submit"

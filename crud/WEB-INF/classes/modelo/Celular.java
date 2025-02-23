@@ -1,10 +1,10 @@
 package modelo;
 
 public class Celular {
-    Long imei;
-    String nombre;
-    String marca;
-    int anoLanzamiento;
+    private Long imei;
+    private String nombre;
+    private String marca;
+    private int anoLanzamiento;
 
  
 
@@ -14,10 +14,11 @@ public class Celular {
         this.anoLanzamiento = anoLanzamiento;
         this.marca = marca;
     }
-    public Celular(String nombre, String marca, int anoLanzamiento) {
+    public Celular(String nombre, String marca, int anoLanzamiento, Long imei) {
         this.nombre = nombre;
         this.anoLanzamiento = anoLanzamiento;
         this.marca = marca;
+        this.imei=imei;
     }
     public Celular(){
 
