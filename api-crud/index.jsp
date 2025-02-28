@@ -85,7 +85,7 @@
             </div>
         </form>
     </main>
-    <script src="/validation.js" defer></script>
+    <script src="validation.js" defer></script>
 
 </body>
 </html>
