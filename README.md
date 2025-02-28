@@ -34,12 +34,24 @@ En dado caso de que tu versión de tomcat sea la 9 o inferior, no es necesario c
 > **IMPORTANT:**
 Para crear la base de datos es recomendable ejecutar los siguientes comandos dentro de tu psql:
 > ```bash
-> CREATE DATABASE celulares
+> CREATE DATABASE celulares;
+> 
 > CREATE TABLE celular (
 > imei BIGINT PRIMARY KEY,
 > nombre VARCHAR(50) NOT NULL,
 > marca VARCHAR(50) NOT NULL,
 > anolanzamiento INT NOT NULL);
+>
+> CREATE TYPE profile_type AS ENUM ('ADMIN', 'USER', 'MODERATOR');
+>
+>CREATE TABLE users (
+>rfc VARCHAR(13) PRIMARY KEY,
+>name VARCHAR(30) NOT NULL,
+>lastname VARCHAR(50) NOT NULL,
+>password VARCHAR(255) NOT NULL,
+>profile profile_type NOT NULL DEFAULT 'USER'
+>);
+>
 > ```
 
 > **TIP:**
