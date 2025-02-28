@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +39,7 @@
                         Iniciar Sesión
                     </button>
                 </form>
-                <p class="text-center">¿No tienes una cuenta? <a href="register.jsp" class="mt-4 text-blue-500 underline">Registrate</a></p>
+                <p class="text-center mt-4">¿No tienes una cuenta? <a href="register.jsp" class="mt-4 text-blue-500 underline">Registrate</a></p>
             </div>
         </div>
     </div>
