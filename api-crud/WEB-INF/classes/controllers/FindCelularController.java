@@ -21,9 +21,9 @@ public class FindCelularController extends HttpServlet {
     try {
         String imeiParam = request.getParameter("imei");
         Long imei = Long.parseLong(imeiParam);
-        Celular celular = service.findById(imei,"SELECT nombre,marca,anoLanzamiento FROM celular where imei = ?",Celular.class);
+        Celular celular = service.findByParams("SELECT nombre,marca,anoLanzamiento FROM celular where imei = ?",Celular.class,imei);
         request.setAttribute("celular", celular);
-        RequestDispatcher rd = request.getRequestDispatcher("/src/update.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/update.jsp");
         rd.forward(request, response);
     } catch (Exception e) {
         e.printStackTrace();

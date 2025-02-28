@@ -33,8 +33,7 @@ public class InsertController extends HttpServlet {
             Dataservice<Celular> service = new Dataservice<>();
             Celular celular = new Celular(imei, nombre, marca, anoLanzamiento);
             String resultado = service.insertar(celular, "INSERT INTO celular (imei, nombre, marca, anoLanzamiento) VALUES (?, ?, ?, ?)");
-            HttpSession sesion = request.getSession();
-            sesion.setAttribute("resultado", resultado);
+            
             response.sendRedirect(request.getContextPath() + "/SelectController?");
 
         } catch (NumberFormatException e) {

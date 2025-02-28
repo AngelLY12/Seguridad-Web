@@ -36,8 +36,7 @@ public class UpdateController extends HttpServlet {
             Celular celular = new Celular(imei,nombre,marca,anoLanzamiento);
             String[] fieldOrder = {"nombre", "marca", "anoLanzamiento", "imei"};
             String resultado = service.modificar(celular, "UPDATE celular SET nombre = ?, marca = ?, anoLanzamiento = ? WHERE imei = ?", fieldOrder);
-            HttpSession sesion = request.getSession();
-            sesion.setAttribute("resultado", resultado);
+            
             response.sendRedirect(request.getContextPath() + "/SelectController?");
         }catch (Exception e){
             System.out.println("Ha ocurrido un error:" + e);
