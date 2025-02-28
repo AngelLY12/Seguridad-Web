@@ -61,4 +61,63 @@ Recuerda que siempre debes compilar los archivos java cuando les haces una modif
 > db.user=tu_usuario
 > db.password=tu_contraseña
 > ```
+> 
+> **CASOS DE USO:**
+> 
+> La api `database.jar` tiene los metodos CRUD en un directorio llamado Services. Para hacer uso de los mismos dentro de tu aplicación debes importarlo de la siguiente manera:
+> 
+> ```bash
+> import services.Dataservice
+> ```
+> 
+> Eso te permitira acceder a los metodos CRUD dentro de la api en donde encontraras el `insertar, seleccionar, modificar, eliminar y findById`.
+> Cada uno de estos metodos te permitira ingresar una query como uno de sus parametros, en el caso del insertar y modificar tambien deberas ingresar un objeto que >referencie a los datos que estas manejando en tu base de datos, mientras que el eliminar y findById recibe el ID del objeto. Cabe resaltar que modificar recibira un array >con el orden en que se van a manejar los datos dentro de la query.
+> Insertar devuelve un string, preferentemente con una respuesta de si se hizo la inserción a la base de datos, seleccionar devuelve una `<List>` de objetos, modificar un string de respuesta positiva de actualización, eliminar un string para saber si se elimino el registro y findById un objeto (el que encontro).
+> Ejemplos de uso:
+> 
+>**INSERTAR**
+> 
+> ```bash
+>import services.Dataservice;
+>import modelo.Celular;
+>Dataservice<Celular> service = new Dataservice<>();
+>Celular celular = new Celular(imei, nombre, marca, anoLanzamiento);
+>String resultado = service.insertar(celular, "INSERT INTO celular (imei, nombre, marca, anoLanzamiento) VALUES (?, ?, ?, ?)");
+> ```
+> 
+> **SELECCIONAR**
+> ```bash
+>import services.Dataservice;
+>import modelo.Celular;
+>private final Dataservice<Celular> service = new Dataservice<>();
+>List<Celular> celulares = service.seleccionar("SELECT * FROM celular",Celular.class);
+> ```
+> 
+> **MODIFICAR**
+> ```bash
+>import services.Dataservice;
+>import modelo.Celular;
+>private final Dataservice<Celular> service = new Dataservice<>();
+>Celular celular = new Celular(nombre,marca,anoLanzamiento,imei);
+>String[] fieldOrder = {"nombre", "marca", "anoLanzamiento", "imei"};
+>String resultado = service.modificar(celular, "UPDATE celular SET nombre = ?, marca = ?, anoLanzamiento = ? WHERE imei = ?", fieldOrder);
+> ```
+> 
+>  **ELIMINAR**
+> ```bash
+>import services.Dataservice;
+>import modelo.Celular;
+>Dataservice<Celular> service = new Dataservice<>();
+>service.eliminar(imei, "DELETE FROM celular WHERE imei = ?");
+> ```
+> 
+> **FINDBYID**
+> ```bash
+>import services.Dataservice;
+>import modelo.Celular;
+>Dataservice<Celular> service = new Dataservice<>();
+>Celular celular = service.findById(imei,"SELECT nombre,marca,anoLanzamiento FROM celular where imei = ?",Celular.class);
+> ```
+
+
 
