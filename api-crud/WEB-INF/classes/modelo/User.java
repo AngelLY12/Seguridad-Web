@@ -26,8 +26,12 @@ public class User {
     public void setName(String name){this.name=name;}
     public void setLastName(String lastName){this.lastName=lastName;}
     public void setPassword(String password){this.password=password;}
-    public void setProfile(String profile){this.profile=profile;}
-
+    public void setProfile(String profile) {
+    if (profile == "ADMIN") {
+        throw new SecurityException("No puedes asignar el rol de ADMIN manualmente.");
+    }
+    this.profile = profile.toUpperCase();
+    }
     @Override
     public String toString(){
         return "Usuario{" +
