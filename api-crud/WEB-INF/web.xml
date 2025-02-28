@@ -12,6 +12,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>InsertUserController</servlet-name>
+        <servlet-class>controllers.users.InsertUserController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>InsertUserController</servlet-name>
+        <url-pattern>/InsertUserController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>SelectController</servlet-name>
         <servlet-class>controllers.SelectController</servlet-class>
     </servlet>
