@@ -12,13 +12,13 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>GraficasController</servlet-name>
-        <servlet-class>controllers.GraficasController</servlet-class>
+        <servlet-name>InsertUserController</servlet-name>
+        <servlet-class>controllers.users.InsertUserController</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>GraficasController</servlet-name>
-        <url-pattern>/GraficasController</url-pattern>
+        <servlet-name>InsertUserController</servlet-name>
+        <url-pattern>/InsertUserController</url-pattern>
     </servlet-mapping>
 
     <servlet>

@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     let patternImei = new RegExp("^\\d{15}$");
     let patternNombre = new RegExp("^[a-zA-Z0-9\\s]{5,20}$"); 
-    let patternMarca = new RegExp("^[A-Z][a-zA-Z\s]{4,19}$");
+    let patternMarca = new RegExp("^[a-zA-Z\\s]{5,20}$");
     let patternLanzamiento = new RegExp("^(20\\d{2})$");
 
     function mostrarMensajeError(idElemento, idMensaje, mensaje, regex) {
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     mostrarMensajeError("imei", "imei-message", "El IMEI debe ser una cadena de 15 números", patternImei);
     mostrarMensajeError("nombre", "nombre-message", "El nombre debe tener entre 5 y 50 caracteres", patternNombre);
-    mostrarMensajeError("marca", "marca-message", "La marca debe tener entre 5 y 30 caracteres y solo letras y empezar con mayusucla", patternMarca);
+    mostrarMensajeError("marca", "marca-message", "La marca debe tener entre 5 y 30 caracteres y solo letras", patternMarca);
     mostrarMensajeError("anoLanzamiento", "anoLanzamiento-message", "El año de lanzamiento debe ser posterior al 2000", patternLanzamiento);
 });
 
