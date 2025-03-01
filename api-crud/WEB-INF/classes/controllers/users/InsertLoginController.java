@@ -45,8 +45,12 @@ public class InsertLoginController extends HttpServlet {
             String profile = resultado.getProfile();
             RequestDispatcher rd = null;
 
-            response.sendRedirect(request.getContextPath() + "/SelectController");
-
+	    if ("USER".equalsIgnoreCase(profile) || "MODERATOR".equalsIgnoreCase(profile)) {
+                response.sendRedirect(request.getContextPath() + "/SelectController");
+            } 
+            else if ("ADMIN".equalsIgnoreCase(profile)) {
+                response.sendRedirect(request.getContextPath() + "/SelectUsersController");
+            }
 
             // Realizar el forward a la página correspondiente
             if (rd != null) {

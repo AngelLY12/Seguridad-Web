@@ -1,4 +1,4 @@
-package controllers;
+package controllers.users;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import modelo.Celular;
 import modelo.User;
 import services.Dataservice;
 
@@ -14,22 +13,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectController extends HttpServlet {
+public class SelectUsersController extends HttpServlet {
 
-    private final Dataservice<Celular> service = new Dataservice<>();
+    private final Dataservice<User> service = new Dataservice<>();
 
     @Override
 protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
     try {
         // Obtener la lista de celulares desde la base de datos
-        List<Celular> celulares = service.seleccionar("SELECT * FROM celular", Celular.class);
+        List<User> users = service.seleccionar("SELECT * FROM users", User.class);
 
         // Si la lista está vacía o es nula, se asigna una lista vacía
-        if (celulares != null && !celulares.isEmpty()) {
-            request.setAttribute("celulares", celulares);
+        if (users != null && !users.isEmpty()) {
+            request.setAttribute("users", users);
         } else {
-            request.setAttribute("celulares", new ArrayList<>());  // Lista vacía si no se encuentran celulares
+            request.setAttribute("users", new ArrayList<>());  // Lista vacía si no se encuentran celulares
         }
 
         HttpSession sesion = request.getSession();
@@ -44,12 +43,8 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
         
             // Redirección dependiendo del perfil
             RequestDispatcher rd = null;
-            if ("USER".equalsIgnoreCase(profile)) {
-                rd = request.getRequestDispatcher("hero.jsp");
-            } else if ("ADMIN".equalsIgnoreCase(profile)) {
+            if ("ADMIN".equalsIgnoreCase(profile)) {
                 rd = request.getRequestDispatcher("panel.jsp");
-            } else if ("MODERATOR".equalsIgnoreCase(profile)) {
-                rd = request.getRequestDispatcher("phones.jsp");
             }
         
             // Realizar el forward a la página correspondiente

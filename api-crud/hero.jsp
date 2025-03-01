@@ -13,8 +13,8 @@
     <section class="relative bg-cover bg-center h-screen" style="background-image: url('https://via.placeholder.com/1920x1080');">
         <div class="absolute inset-0 bg-black opacity-50"></div> 
         <div class="relative z-10 flex flex-col justify-center items-center h-full text-center text-white px-6">
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">Bienvenidos a Nuestra Página</h1>
-            <p class="text-lg sm:text-xl mb-6">Descubre productos increíbles y disfruta de experiencias únicas. ¡Explora ahora!</p>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">Bienvenidos al sitio de celulares</h1>
+            <p class="text-lg sm:text-xl mb-6">Descubre los celulares mas increibles ¡Explora ahora!</p>
             <a href="#explorar" class="bg-blue-600 text-white px-8 py-3 text-lg font-semibold rounded-full shadow-md transition transform hover:bg-blue-500 hover:scale-105">Explorar Ahora</a>
         </div>
     </section>

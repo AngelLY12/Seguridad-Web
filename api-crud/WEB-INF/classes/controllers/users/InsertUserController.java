@@ -24,20 +24,17 @@ public class InsertUserController extends HttpServlet {
                 password == null || password.isEmpty()) {
                 throw new IllegalArgumentException("Todos los campos son obligatorios y no pueden estar vacíos");
             }
-            Dataservice<User> service = new Dataservice<>();
-
-            User existingUser = service.findByParams("SELECT * FROM users WHERE rfc = ?", User.class,rfc);
-            if (existingUser != null) {
-                response.sendRedirect("register.jsp?error=El usuario ya está registrado");
-                return;
-            }
-
-           
+		Dataservice<User> service = new Dataservice<>();
+	    User existsUser=service.findByParams("SELECT * from users WHERE rfc=?",User.class,rfc);
+	    if(existsUser!=null){
+	    	response.sendRedirect("register.jsp?error=El usuario ya esta registrado");
+		return;
+	    }		
             User user = new User(rfc,name,lastName,password);
             String resultado = service.insertar(user, "INSERT INTO users (rfc, name, lastname, password, profile) VALUES (?, ?, ?, ?,?)");
             HttpSession sesion = request.getSession();
             sesion.setAttribute("resultado", resultado);
-            response.sendRedirect(request.getContextPath() + "login.jsp");
+            response.sendRedirect("login.jsp");
 
         } catch (IllegalArgumentException e) {
             out.println("<p>Error: " + e.getMessage() + "</p>");

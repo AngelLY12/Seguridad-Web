@@ -42,6 +42,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>SelectUsersController</servlet-name>
+        <servlet-class>controllers.users.SelectUsersController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SelectUsersController</servlet-name>
+        <url-pattern>/SelectUsersController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>FindCelularController</servlet-name>
         <servlet-class>controllers.FindCelularController</servlet-class>
     </servlet>
