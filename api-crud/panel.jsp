@@ -89,7 +89,7 @@
 </div>
 <script>
   function openModal(imei) {
-    document.getElementById("imei").value = imei;
+    document.getElementById("rfc").value = rfc;
       document.getElementById('modal-bg').classList.remove('hidden');
   }
 
