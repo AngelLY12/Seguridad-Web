@@ -72,6 +72,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>UpdateUserController</servlet-name>
+        <servlet-class>controllers.users.UpdateUserController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UpdateUserController</servlet-name>
+        <url-pattern>/UpdateUserController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>DeleteController</servlet-name>
         <servlet-class>controllers.DeleteController</servlet-class>
     </servlet>
@@ -80,4 +90,15 @@
         <servlet-name>DeleteController</servlet-name>
         <url-pattern>/DeleteController</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteUserController</servlet-name>
+        <servlet-class>controllers.users.DeleteUserController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleteUserController</servlet-name>
+        <url-pattern>/DeleteUserController</url-pattern>
+    </servlet-mapping>
+
 </web-app>
