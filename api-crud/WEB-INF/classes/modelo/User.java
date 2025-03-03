@@ -20,6 +20,12 @@ public class User {
         this.rfc=rfc;
         this.password=password;
     }
+    public User(String rfc, String name, String lastName,String profile){
+        this.rfc=rfc;
+        this.name=name;
+        this.lastName=lastName;
+        this.profile=profile;
+    }
 
     public String getRFC(){return rfc;}
     public String getName(){return name;}
