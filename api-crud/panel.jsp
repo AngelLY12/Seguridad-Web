@@ -46,7 +46,7 @@
                                     <td class="p-2 border"><%= usuario.getLastName() %></td>
                                     <td class="p-2 border"><%= usuario.getProfile() %></td>
                                     <td class="p-2 border flex justify-center items-center  gap-2">
-					<form action="updateUser.jsp" method="post">
+					        <form action="updateUser.jsp" method="post">
               					<input type="hidden" name="rfc" value="<%= usuario.getRFC() %>">
               					<input type="hidden" name="name" value="<%= usuario.getName() %>">
              					 <input type="hidden" name="lastName" value="<%= usuario.getLastName() %>">
@@ -75,7 +75,7 @@
     <div class="bg-white rounded-lg shadow-lg p-6 max-w-md w-full mx-auto">
         <h2 class="text-lg font-bold mb-4">¿Estás seguro de eliminar este registro?</h2>
         <form action="${pageContext.request.contextPath}/DeleteUserController" method="post">
-            <input type="hidden" id="imei" name="imei">
+            <input type="hidden" id="rfc" name="rfc">
             <div class="flex justify-end gap-4">
                 <input type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700" value="Eliminar">
                     
