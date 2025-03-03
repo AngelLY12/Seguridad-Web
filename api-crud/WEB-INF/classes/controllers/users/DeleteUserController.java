@@ -1,5 +1,37 @@
 package controllers.users;
 
-public class DeleteUserController {
+import javax.servlet.ServletException;
+import javax.servlet.http.*;
+import modelo.User;
+import services.Dataservice;
+import java.io.IOException;
+
+public class DeleteUserController extends HttpServlet {
+
+    private final Dataservice<User> service = new Dataservice<>();
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        try {
+            response.setContentType("text/html");
+    
+            String rfc = request.getParameter("rfc");
+            if (rfc == null || rfc.isEmpty() || rfc.equals("undefined")) {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "RFC inválido");
+                return;
+            }
+    
+            service.eliminar(rfc, "DELETE FROM users WHERE rfc = ?");
+    
+            response.sendRedirect(request.getContextPath() + "/SelectController?");
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato de RFC inválido");
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al eliminar el celular");
+        }
+    }
     
 }
