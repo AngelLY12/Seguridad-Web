@@ -122,12 +122,12 @@ Recuerda que siempre debes compilar los archivos java cuando les haces una modif
 >service.eliminar(imei, "DELETE FROM celular WHERE imei = ?");
 > ```
 > 
-> **FINDBYID**
+> **FINDBYPARAMS**
 > ```bash
 >import services.Dataservice;
 >import modelo.Celular;
 >Dataservice<Celular> service = new Dataservice<>();
->Celular celular = service.findById(imei,"SELECT nombre,marca,anoLanzamiento FROM celular where imei = ?",Celular.class);
+>Celular celular = service.findByParams("SELECT nombre,marca,anoLanzamiento FROM celular where imei = ?",Celular.class, imei);
 > ```
 
 
