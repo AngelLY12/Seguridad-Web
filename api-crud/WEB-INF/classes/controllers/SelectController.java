@@ -46,6 +46,8 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
             RequestDispatcher rd = null;
             if ("USER".equalsIgnoreCase(profile)) {
                 rd = request.getRequestDispatcher("hero.jsp");
+            } else if ("ADMIN".equalsIgnoreCase(profile)) {
+                rd = request.getRequestDispatcher("panel.jsp");
             } else if ("MODERATOR".equalsIgnoreCase(profile)) {
                 rd = request.getRequestDispatcher("phones.jsp");
             }

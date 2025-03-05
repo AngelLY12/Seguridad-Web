@@ -21,10 +21,18 @@ public class DeleteUserController extends HttpServlet {
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "RFC inválido");
                 return;
             }
+	    HttpSession session = request.getSession();
     
-            service.eliminar(rfc, "DELETE FROM users WHERE rfc = ?");
-    
-            response.sendRedirect(request.getContextPath() + "/SelectController?");
+	    String resultado=service.eliminar(rfc, "DELETE FROM users WHERE rfc = ?");
+    	    if(resultado.equals("Registro eliminado correctamente")){
+		
+    		session.setAttribute("successMessage", resultado);
+		response.sendRedirect(request.getContextPath() + "/SelectUsersController?");
+	    }else{
+		session.setAttribute("errorMessage", resultado);
+
+	    }
+            
         } catch (NumberFormatException e) {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato de RFC inválido");

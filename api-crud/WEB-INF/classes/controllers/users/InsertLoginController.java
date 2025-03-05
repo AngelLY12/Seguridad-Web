@@ -27,21 +27,21 @@ public class InsertLoginController extends HttpServlet {
                 throw new IllegalArgumentException("Todos los campos son obligatorios y no pueden estar vacíos.");
             }
 
-            // Consulta SQL para buscar el usuario
+          
             String sql = "SELECT * FROM users WHERE rfc = ? AND password = ?";
             Dataservice<User> service = new Dataservice<>();
             User resultado = service.findByParams(sql, User.class, rfc, password);
-
+	    HttpSession sesion = request.getSession();
             // Verificar si el usuario fue encontrado
             if (resultado == null) {
-                throw new IllegalArgumentException("Usuario no encontrado o credenciales incorrectas.");
+                sesion.setAttribute("errorMessage","Usuario no encontrado o credenciales incorrectas.");
+		response.sendRedirect("login.jsp");
             }
 
             // Guardar el usuario en la sesión
-            HttpSession sesion = request.getSession();
+           
             sesion.setAttribute("resultado", resultado);
-
-            // Redirigir según el perfil del usuario
+	    sesion.setMaxInactiveInterval(60*10);
             String profile = resultado.getProfile();
             RequestDispatcher rd = null;
 
@@ -52,7 +52,7 @@ public class InsertLoginController extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/SelectUsersController");
             }
 
-            // Realizar el forward a la página correspondiente
+            
             if (rd != null) {
                 rd.forward(request, response);
             }

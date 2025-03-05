@@ -91,7 +91,7 @@
         <url-pattern>/DeleteController</url-pattern>
     </servlet-mapping>
 
-    <servlet>
+   <servlet>
         <servlet-name>DeleteUserController</servlet-name>
         <servlet-class>controllers.users.DeleteUserController</servlet-class>
     </servlet>
@@ -101,4 +101,15 @@
         <url-pattern>/DeleteUserController</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>logOutController</servlet-name>
+        <servlet-class>controllers.users.logOutController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>logOutController</servlet-name>
+        <url-pattern>/logOutController</url-pattern>
+    </servlet-mapping>
+
+	
 </web-app>

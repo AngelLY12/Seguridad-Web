@@ -28,18 +28,35 @@ public class UpdateUserController extends HttpServlet {
             }
 
             Dataservice<User> service = new Dataservice<>();
-            User user = new User(rfc,name,lastname,profile);
-            String[] fieldOrder = {"name", "lastname", "profile", "rfc"};
-            String resultado = service.modificar(user, "UPDATE users SET name = ?, lastname = ?, profile = ? WHERE id = ?", fieldOrder);
+            User user = service.findByParams("SELECT * FROM users WHERE rfc = ?",User.class,rfc);
+
+	   if (user == null) {
+                request.setAttribute("errorMessage", "No se encontró un usuario con el RFC proporcionado.");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/updateUser.jsp");
+                dispatcher.forward(request, response);
+                return;
+            }
+	    
+            user.setName(name);
+            user.setLastName(lastname);
+            user.setProfile(profile);
+
+            String[] fieldOrder = {"name", "lastName", "profile", "rfc"};
+            String resultado = service.modificar(user, "UPDATE users SET name = ?, lastname = ?, profile = ? WHERE rfc = ?", fieldOrder);
             if(resultado.equals("Registro modificado correctamente")){
-                response.sendRedirect(request.getContextPath() + "/SelectController?");
+		HttpSession session = request.getSession();
+                session.setAttribute("successMessage", resultado);
+                response.sendRedirect(request.getContextPath() + "/SelectUsersController?");
+	
             }else {
-                request.setAttribute("errorMessage", "No se pudo modificar el registro.");
+                request.setAttribute("errorMessage", resultado);
+		
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/updateUser.jsp");
                 dispatcher.forward(request, response);
             }
         }catch (Exception e){
-            System.out.println("Ha ocurrido un error:" + e);
+           e.printStackTrace(); 
+           
         }
     }
 
