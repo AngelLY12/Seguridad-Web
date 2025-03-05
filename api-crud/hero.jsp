@@ -10,6 +10,7 @@
     <script src="https://cdn.tailwindcss.com"></script> 
 </head>
 <body class="bg-gray-100">
+    <a  href="${pageContext.request.contextPath}/logOutController">Cerrar sesion</a>
     <section class="relative bg-cover bg-center h-screen" style="background-image: url('https://via.placeholder.com/1920x1080');">
         <div class="absolute inset-0 bg-black opacity-50"></div> 
         <div class="relative z-10 flex flex-col justify-center items-center h-full text-center text-white px-6">

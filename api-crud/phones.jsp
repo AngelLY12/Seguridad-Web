@@ -14,6 +14,7 @@
     <div class="container mx-auto text-center">
       <h1 class="text-3xl font-bold">Lista de Celulares agregados</h1>
       <a href="index.jsp" class="hover:underline underline-offset-8">Agregar</a>
+      <a href="${pageContext.request.contextPath}/logOutController">Cerrar sesion</a>
       
     </div>
   </header>

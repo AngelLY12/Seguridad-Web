@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="javax.servlet.http.HttpSession" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +11,36 @@
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div>
+  <%
+
+
+    if (session != null) {
+        String successMessage = (String) session.getAttribute("successMessage");
+        if (successMessage != null) {
+
+    %>
+            <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
+                <p class="font-bold">¡Éxito!</p>
+                <p><%= successMessage %></p>
+            </div>
+    <%
+
+            session.removeAttribute("successMessage");
+        }
+         String errorMessage = (String) session.getAttribute("errorMessage");
+        if (errorMessage != null) {
+    %>
+            <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
+                <p class="font-bold">Error</p>
+                <p><%= errorMessage %></p>
+            </div>
+    <%
+
+            session.removeAttribute("errorMessage");
+        }
+     }
+    %>
+
         <div class="w-full h-full flex justify-center items-center">
             <div class=" bg-white shadow-lg rounded-lg p-6 w-96">
                 <h2 class="text-2xl font-bold text-center text-gray-800">Login</h2>

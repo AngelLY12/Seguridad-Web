@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="modelo.User" %>
+<%@ page import="javax.servlet.http.HttpSession" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,15 +12,44 @@
 </head>
 <body class="bg-gray-100">
 
-    <!-- Header -->
+    
     <header class="bg-blue-500 text-white py-4 text-center">
         <h1 class="text-2xl font-bold">Panel de Administración</h1>
+	<a href="${pageContext.request.contextPath}/logOutController">Cerrar sesion</a>
     </header>
 
-    <!-- Contenedor principal -->
+    <%
+    
+    
+    if (session != null) {
+        String successMessage = (String) session.getAttribute("successMessage");
+        if (successMessage != null) {
+          
+    %>
+            <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
+                <p class="font-bold">¡Éxito!</p>
+                <p><%= successMessage %></p>
+            </div>
+    <%
+            
+            session.removeAttribute("successMessage");
+        }
+   	 String errorMessage = (String) session.getAttribute("errorMessage");
+        if (errorMessage != null) {
+    %>
+            <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
+                <p class="font-bold">Error</p>
+                <p><%= errorMessage %></p>
+            </div>
+    <%
+            
+            session.removeAttribute("errorMessage");
+        }
+     }
+    %>
     <div class="max-w-5xl mx-auto bg-white p-6 mt-6 shadow-md rounded-lg">
 
-        <!-- Lista de Usuarios -->
+       
         <h2 class="text-xl font-semibold mb-4">Lista de Usuarios</h2>
         <div class="overflow-x-auto">
             <table class="w-full border-collapse border border-gray-300">
@@ -38,6 +68,7 @@
                         List<User> usuarios = (List<User>) request.getAttribute("users");
                         if (usuarios != null) {
                             for (User usuario : usuarios) {
+				if(!usuario.getProfile().equals("ADMIN")){
                     %>
                                 <tr class="hover:bg-gray-100">
                                 
@@ -46,7 +77,7 @@
                                     <td class="p-2 border"><%= usuario.getLastName() %></td>
                                     <td class="p-2 border"><%= usuario.getProfile() %></td>
                                     <td class="p-2 border flex justify-center items-center  gap-2">
-					        <form action="updateUser.jsp" method="post">
+					<form action="updateUser.jsp" method="post">
               					<input type="hidden" name="rfc" value="<%= usuario.getRFC() %>">
               					<input type="hidden" name="name" value="<%= usuario.getName() %>">
              					 <input type="hidden" name="lastName" value="<%= usuario.getLastName() %>">
@@ -58,7 +89,9 @@
                                     </td>
                                 </tr>
                     <%
+				}
                             }
+			 
                         } else {
                     %>
                         <tr>

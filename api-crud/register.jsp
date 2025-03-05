@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="javax.servlet.http.HttpSession" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +10,25 @@
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <main class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+
+    <%
+
+
+    if (session != null) {
+        String errorMessage = (String) session.getAttribute("errorMessage");
+        if (errorMessage != null) {
+    %>
+            <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
+                <p class="font-bold">Error</p>
+                <p><%= errorMessage %></p>
+            </div>
+    <%
+
+            session.removeAttribute("errorMessage");
+        }
+     }
+    %>
+
         <form action="${pageContext.request.contextPath}/InsertUserController" method="POST" class="space-y-4" id="user-form">
             <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Register</h2>
             

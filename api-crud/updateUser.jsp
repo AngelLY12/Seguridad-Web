@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar Celulares</title>
+    <title>Actualizar Usuario</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
@@ -16,7 +16,7 @@
         </div>
     </header>
     <main class="container mx-auto p-6">
-        <form action="${pageContext.request.contextPath}/UpdateController" method="POST" class="bg-white shadow-md rounded-lg p-6">
+        <form action="${pageContext.request.contextPath}/UpdateUserController" method="POST" class="bg-white shadow-md rounded-lg p-6">
             <div class="space-y-6">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-4">Agrega tu celular</h2>
                 <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
