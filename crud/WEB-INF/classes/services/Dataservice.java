@@ -52,19 +52,20 @@ public class Dataservice<T> implements DataInterface<T> {
     
     
     @Override
-    public String modificar(T object, String query) {
-        try(PreparedStatement stmt=db.getConnection().prepareStatement(query)) {
-            
-            setParameters(stmt, object);
-            int filasAfectadas = stmt.executeUpdate();
-            return filasAfectadas > 0 ? "Registro modificado correctamente" : "No se pudo modificar el registro";
-            
-        } catch (SQLException | IllegalAccessException e) {
-            return "Error al modificar: " + e.getMessage();
-        } finally {
-            db.getConnection();
-           
+    public String modificar(T object, String query, String[] fieldOrder) {
+    try (PreparedStatement stmt = db.getConnection().prepareStatement(query)) {
+        for (int i = 0; i < fieldOrder.length; i++) {
+            Field field = object.getClass().getDeclaredField(fieldOrder[i]);
+            field.setAccessible(true);
+            stmt.setObject(i + 1, field.get(object));
         }
+        int filasAfectadas = stmt.executeUpdate();
+        return filasAfectadas > 0 ? "Registro modificado correctamente" : "No se pudo modificar el registro";
+    } catch (SQLException | IllegalAccessException | NoSuchFieldException e) {
+        return "Error al modificar: " + e.getMessage();
+    } finally {
+        db.desconectar();
+    }
     }
 
     @Override

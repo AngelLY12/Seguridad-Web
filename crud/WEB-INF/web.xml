@@ -12,6 +12,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>GraficasController</servlet-name>
+        <servlet-class>controllers.GraficasController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GraficasController</servlet-name>
+        <url-pattern>/GraficasController</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>SelectController</servlet-name>
         <servlet-class>controllers.SelectController</servlet-class>
     </servlet>

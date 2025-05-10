@@ -1,6 +1,6 @@
 package controllers;
-import jakarta.servlet.http.*;
-import jakarta.servlet.RequestDispatcher;
+import javax.servlet.http.*;
+import javax.servlet.RequestDispatcher;
 import modelo.Celular;
 import services.Dataservice;
 import java.io.IOException;
@@ -33,10 +33,10 @@ public class UpdateController extends HttpServlet {
             System.out.println("Año de Lanzamiento int: " + anoLanzamiento);
 
             Dataservice<Celular> service = new Dataservice<>();
-            Celular celular = new Celular(nombre,marca,anoLanzamiento,imei);
+            Celular celular = new Celular(imei,nombre,marca,anoLanzamiento);
             String[] fieldOrder = {"nombre", "marca", "anoLanzamiento", "imei"};
-            String resultado = service.modificar(celular, "UPDATE celular SET nombre = ?, marca = ?, anoLanzamiento = ? WHERE imei = ?", fieldOrder);            HttpSession sesion = request.getSession();
-            sesion.setAttribute("resultado", resultado);
+            String resultado = service.modificar(celular, "UPDATE celular SET nombre = ?, marca = ?, anoLanzamiento = ? WHERE imei = ?", fieldOrder);
+            
             response.sendRedirect(request.getContextPath() + "/SelectController?");
         }catch (Exception e){
             System.out.println("Ha ocurrido un error:" + e);

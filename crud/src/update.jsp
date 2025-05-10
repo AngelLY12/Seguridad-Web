@@ -12,8 +12,12 @@
     <header class="bg-blue-600 text-white py-4">
         <div class="container mx-auto text-center">
             <h1 class="text-3xl font-bold">Formulario de Actualización</h1>
-            <a href="/crud/SelectController?" class="hover:underline underline-offset-8">Ver celulares</a>
-        </div>
+            <span class="inline-flex justify-center py-2 px-4 border border-transparent shadow-md font-medium rounded-md text-white gap-12">
+                <a href="./index.jsp" class="hover:underline underline-offset-8">Agregar</a>
+                <a href="/crud/SelectController?" class="hover:underline underline-offset-8">Ver celulares</a>
+                <a href="./graficas.jsp" class="hover:underline underline-offset-8">Graficas</a>
+            </span>       
+         </div>
     </header>
     <main class="container mx-auto p-6">
         <form action="${pageContext.request.contextPath}/UpdateController" method="POST" class="bg-white shadow-md rounded-lg p-6">
@@ -80,6 +84,7 @@
                     />
                     <small class="w-full h-10" id="marca-message"></small>
                 </div>
+
                 
                 <div class="text-right">
                     <button
